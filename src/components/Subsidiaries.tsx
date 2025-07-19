@@ -22,12 +22,6 @@ const Subsidiaries = () => {
       category: "Technology"
     },
     {
-      name: "Jasmin Travel Solution LLC",
-      description: "End-to-end travel booking and management services.",
-      icon: Plane,
-      category: "Travel"
-    },
-    {
       name: "Jazi Care LLC",
       description: "Maternal care and pregnancy tracking app designed for expecting mothers.",
       icon: Heart,

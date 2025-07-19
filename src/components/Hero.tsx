@@ -10,7 +10,12 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-cream overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/lovable-uploads/3713ac4b-61df-41f1-a1f6-6c02dba8c01a.png')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-jazmin-brown rounded-full animate-float"></div>
@@ -30,14 +35,14 @@ const Hero = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-jazmin-brown mb-6 animate-fade-in">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
             Empowering Ideas.
             <br />
-            <span className="text-jazmin-warm">Building Futures.</span>
+            <span className="text-jazmin-cream">Building Futures.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-jazmin-warm max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in">
+          <p className="text-lg sm:text-xl text-white max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in">
             Jazmin Business Group LLC (JBG) manages a diverse portfolio of companies across education, 
             technology, care, travel, and publishing—united by integrity and innovation.
           </p>
@@ -64,8 +69,8 @@ const Hero = () => {
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <div className="w-6 h-10 border-2 border-jazmin-brown rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-jazmin-brown rounded-full mt-2 animate-bounce"></div>
+            <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
             </div>
           </div>
         </div>
