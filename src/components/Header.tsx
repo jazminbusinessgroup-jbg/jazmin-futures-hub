@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -18,7 +24,7 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/09df0feb-4add-4808-b30c-420a0364a90f.png" 
               alt="Jazmin Business Group Logo" 
@@ -30,46 +36,46 @@ const Header = () => {
               </h1>
               <p className="text-xs text-jazmin-warm -mt-1">LLC</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection("home")}
+            <Link 
+              to="/"
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
               Home
-            </button>
-            <button 
-              onClick={() => scrollToSection("about")}
+            </Link>
+            <Link 
+              to="/about"
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
               About
-            </button>
-            <button 
-              onClick={() => scrollToSection("subsidiaries")}
+            </Link>
+            <Link 
+              to="/companies"
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
               Companies
-            </button>
+            </Link>
             <button 
               onClick={() => scrollToSection("governance")}
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
               Governance
             </button>
-            <button 
-              onClick={() => scrollToSection("news")}
+            <Link 
+              to="/news"
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
               News
-            </button>
-            <button 
-              onClick={() => scrollToSection("contact")}
+            </Link>
+            <Link 
+              to="/contact"
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
               Contact
-            </button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -85,42 +91,47 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 bg-background border-t border-jazmin-beige">
             <nav className="flex flex-col space-y-4">
-              <button 
-                onClick={() => scrollToSection("home")}
+              <Link 
+                to="/"
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Home
-              </button>
-              <button 
-                onClick={() => scrollToSection("about")}
+              </Link>
+              <Link 
+                to="/about"
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 About
-              </button>
-              <button 
-                onClick={() => scrollToSection("subsidiaries")}
+              </Link>
+              <Link 
+                to="/companies"
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Companies
-              </button>
+              </Link>
               <button 
                 onClick={() => scrollToSection("governance")}
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
               >
                 Governance
               </button>
-              <button 
-                onClick={() => scrollToSection("news")}
+              <Link 
+                to="/news"
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 News
-              </button>
-              <button 
-                onClick={() => scrollToSection("contact")}
+              </Link>
+              <Link 
+                to="/contact"
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
-              </button>
+              </Link>
             </nav>
           </div>
         )}

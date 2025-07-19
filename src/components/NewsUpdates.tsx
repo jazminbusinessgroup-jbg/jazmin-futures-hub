@@ -34,14 +34,6 @@ const NewsUpdates = () => {
       date: "2024-01-10",
       category: "Technology"
     },
-    {
-      id: "3",
-      title: "Jazi Care LLC Receives Healthcare Innovation Award",
-      content: "We're proud to announce that Jazi Care LLC has been recognized with the Healthcare Innovation Award for its groundbreaking maternal care and pregnancy tracking application.",
-      author: "Healthcare Division",
-      date: "2024-01-05",
-      category: "Healthcare"
-    }
   ]);
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);

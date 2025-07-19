@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -34,20 +35,20 @@ const Footer = () => {
             <h4 className="font-semibold text-jazmin-cream mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+                <Link 
+                  to="/about"
                   className="text-jazmin-beige hover:text-white transition-colors duration-300"
                 >
                   About Us
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById("subsidiaries")?.scrollIntoView({ behavior: "smooth" })}
+                <Link 
+                  to="/companies"
                   className="text-jazmin-beige hover:text-white transition-colors duration-300"
                 >
                   Our Companies
-                </button>
+                </Link>
               </li>
               <li>
                 <button 
@@ -58,20 +59,20 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById("news")?.scrollIntoView({ behavior: "smooth" })}
+                <Link 
+                  to="/news"
                   className="text-jazmin-beige hover:text-white transition-colors duration-300"
                 >
                   News & Updates
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                <Link 
+                  to="/contact"
                   className="text-jazmin-beige hover:text-white transition-colors duration-300"
                 >
                   Contact
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
@@ -81,24 +82,24 @@ const Footer = () => {
             <h4 className="font-semibold text-jazmin-cream mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-jazmin-beige hover:text-white transition-colors duration-300">
+                <Link to="/terms" className="text-jazmin-beige hover:text-white transition-colors duration-300">
                   Terms of Use
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-jazmin-beige hover:text-white transition-colors duration-300">
+                <Link to="/privacy" className="text-jazmin-beige hover:text-white transition-colors duration-300">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-jazmin-beige hover:text-white transition-colors duration-300">
+                <Link to="/code-of-conduct" className="text-jazmin-beige hover:text-white transition-colors duration-300">
                   Code of Conduct
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-jazmin-beige hover:text-white transition-colors duration-300">
+                <Link to="/compliance" className="text-jazmin-beige hover:text-white transition-colors duration-300">
                   Compliance
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

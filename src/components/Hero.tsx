@@ -25,14 +25,6 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Logo */}
-          <div className="mb-8 flex justify-center">
-            <img 
-              src="/lovable-uploads/09df0feb-4add-4808-b30c-420a0364a90f.png" 
-              alt="Jazmin Business Group Logo" 
-              className="h-32 w-32 object-contain animate-fade-in"
-            />
-          </div>
 
           {/* Main Headline */}
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
