@@ -47,7 +47,7 @@ const Subsidiaries = () => {
     },
     {
       name: "GPEC Ethiopia",
-      description: "Global Professional Education Center providing comprehensive training and examination services for IELTS, Duolingo, TOEFL, and GRE with state-of-the-art facilities.",
+      description: "Global Prep & Exam Center providing comprehensive training and examination services for IELTS, Duolingo, TOEFL, and GRE with state-of-the-art facilities.",
       icon: Users,
       category: "Education"
     },

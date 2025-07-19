@@ -1,11 +1,7 @@
 import { useState } from "react";
-import { Calendar, User, ArrowRight, Plus, Edit, Trash2 } from "lucide-react";
+import { Calendar, User, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 
 interface NewsItem {
   id: string;
@@ -17,7 +13,7 @@ interface NewsItem {
 }
 
 const NewsUpdates = () => {
-  const [news, setNews] = useState<NewsItem[]>([
+  const [news] = useState<NewsItem[]>([
     {
       id: "1",
       title: "JBG Announces Strategic Expansion into African Markets",
@@ -34,78 +30,72 @@ const NewsUpdates = () => {
       date: "2024-01-10",
       category: "Technology"
     },
+    {
+      id: "3",
+      title: "Start Easy App LLC Partners with Leading Universities",
+      content: "Start Easy App LLC has established partnerships with top universities across three continents to streamline the educational consulting process for international students.",
+      author: "Education Team",
+      date: "2024-01-08",
+      category: "Education"
+    },
+    {
+      id: "4",
+      title: "IBLI Global LLC Introduces Advanced Learning Modules",
+      content: "IBLI Global LLC has launched new interactive learning modules featuring AI-powered personalized learning paths and real-time progress tracking for enhanced educational outcomes.",
+      author: "Development Team",
+      date: "2024-01-05",
+      category: "Education"
+    },
+    {
+      id: "5",
+      title: "Jazi Care LLC Receives Healthcare Innovation Recognition",
+      content: "Jazi Care LLC has been recognized for its innovative maternal care tracking app, helping thousands of expecting mothers monitor their pregnancy journey with professional medical guidance.",
+      author: "Healthcare Team",
+      date: "2024-01-03",
+      category: "Healthcare"
+    },
+    {
+      id: "6",
+      title: "Baytul Kitab LLC Publishes New Educational Series",
+      content: "Baytul Kitab LLC has released a comprehensive educational series focusing on contemporary learning methodologies and cultural preservation through digital publishing.",
+      author: "Publishing Team",
+      date: "2024-01-01",
+      category: "Publishing"
+    },
+    {
+      id: "7",
+      title: "Travel Assist Services LLC Expands VFS Network",
+      content: "Travel Assist Services LLC has expanded its Visa Facilitation Service (VFS) network to include 15 new countries, making global mobility assistance more accessible worldwide.",
+      author: "Travel Team",
+      date: "2023-12-28",
+      category: "Travel Services"
+    },
+    {
+      id: "8",
+      title: "Dana Knowledge Center Launches Online Islamic University",
+      content: "Dana Knowledge Center has officially launched its comprehensive online Islamic university platform, offering accredited courses and research opportunities to students globally.",
+      author: "Academic Team",
+      date: "2023-12-25",
+      category: "Education"
+    },
+    {
+      id: "9",
+      title: "GPEC Ethiopia Achieves International Certification Standards",
+      content: "Global Prep & Exam Center Ethiopia has achieved international certification standards for IELTS, TOEFL, and GRE testing facilities, ensuring world-class examination services.",
+      author: "Certification Team",
+      date: "2023-12-22",
+      category: "Education"
+    },
+    {
+      id: "10",
+      title: "Admission 1 2 3 LLC Simplifies Global University Applications",
+      content: "Admission 1 2 3 LLC has launched a streamlined platform that simplifies university application processes for students seeking admission to institutions worldwide.",
+      author: "Admissions Team",
+      date: "2023-12-20",
+      category: "Education"
+    }
   ]);
 
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-    author: "",
-    category: ""
-  });
-  const { toast } = useToast();
-
-  const categories = ["Business Expansion", "Technology", "Healthcare", "Education", "Travel", "Publishing"];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (editingNews) {
-      // Update existing news
-      setNews(news.map(item => 
-        item.id === editingNews.id 
-          ? { ...item, ...formData }
-          : item
-      ));
-      toast({
-        title: "News Updated",
-        description: "The news article has been successfully updated.",
-      });
-    } else {
-      // Add new news
-      const newNews: NewsItem = {
-        id: Date.now().toString(),
-        ...formData,
-        date: new Date().toISOString().split('T')[0]
-      };
-      setNews([newNews, ...news]);
-      toast({
-        title: "News Added",
-        description: "New news article has been successfully added.",
-      });
-    }
-
-    setFormData({ title: "", content: "", author: "", category: "" });
-    setEditingNews(null);
-    setIsDialogOpen(false);
-  };
-
-  const handleEdit = (newsItem: NewsItem) => {
-    setEditingNews(newsItem);
-    setFormData({
-      title: newsItem.title,
-      content: newsItem.content,
-      author: newsItem.author,
-      category: newsItem.category
-    });
-    setIsDialogOpen(true);
-  };
-
-  const handleDelete = (id: string) => {
-    setNews(news.filter(item => item.id !== id));
-    toast({
-      title: "News Deleted",
-      description: "The news article has been successfully deleted.",
-    });
-  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -129,105 +119,6 @@ const NewsUpdates = () => {
           </p>
         </div>
 
-        {/* Admin Controls */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button 
-                onClick={() => {
-                  setEditingNews(null);
-                  setFormData({ title: "", content: "", author: "", category: "" });
-                }}
-                className="bg-jazmin-brown hover:bg-jazmin-warm text-white shadow-warm"
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                Add News Article
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle className="font-serif text-jazmin-brown">
-                  {editingNews ? "Edit News Article" : "Add New Article"}
-                </DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-jazmin-brown mb-2">
-                    Title
-                  </label>
-                  <Input
-                    name="title"
-                    value={formData.title}
-                    onChange={handleInputChange}
-                    required
-                    className="border-jazmin-beige focus:ring-jazmin-brown focus:border-jazmin-brown"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-jazmin-brown mb-2">
-                    Category
-                  </label>
-                  <select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full border border-jazmin-beige rounded-md px-3 py-2 focus:ring-jazmin-brown focus:border-jazmin-brown"
-                  >
-                    <option value="">Select a category</option>
-                    {categories.map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-jazmin-brown mb-2">
-                    Author
-                  </label>
-                  <Input
-                    name="author"
-                    value={formData.author}
-                    onChange={handleInputChange}
-                    required
-                    className="border-jazmin-beige focus:ring-jazmin-brown focus:border-jazmin-brown"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-jazmin-brown mb-2">
-                    Content
-                  </label>
-                  <Textarea
-                    name="content"
-                    value={formData.content}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="border-jazmin-beige focus:ring-jazmin-brown focus:border-jazmin-brown"
-                  />
-                </div>
-
-                <div className="flex gap-2">
-                  <Button
-                    type="submit"
-                    className="bg-jazmin-brown hover:bg-jazmin-warm text-white"
-                  >
-                    {editingNews ? "Update Article" : "Add Article"}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setIsDialogOpen(false)}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
 
         {/* News Grid */}
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -241,24 +132,6 @@ const NewsUpdates = () => {
                   <span className="text-xs text-jazmin-gold bg-jazmin-cream px-2 py-1 rounded-full">
                     {article.category}
                   </span>
-                  <div className="flex gap-1">
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => handleEdit(article)}
-                      className="h-8 w-8 p-0 text-jazmin-warm hover:text-jazmin-brown"
-                    >
-                      <Edit className="h-3 w-3" />
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => handleDelete(article.id)}
-                      className="h-8 w-8 p-0 text-red-500 hover:text-red-700"
-                    >
-                      <Trash2 className="h-3 w-3" />
-                    </Button>
-                  </div>
                 </div>
                 <CardTitle className="font-serif text-lg text-jazmin-brown leading-tight">
                   {article.title}

@@ -12,7 +12,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/09df0feb-4add-4808-b30c-420a0364a90f.png" 
                 alt="Jazmin Business Group Logo" 
-                className="h-10 w-10 object-contain filter brightness-0 invert"
+                className="h-10 w-10 object-contain"
               />
               <div>
                 <h3 className="font-serif text-xl font-semibold">
@@ -51,12 +51,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById("governance")?.scrollIntoView({ behavior: "smooth" })}
+                <Link 
+                  to="/governance"
                   className="text-jazmin-beige hover:text-white transition-colors duration-300"
                 >
                   Governance
-                </button>
+                </Link>
               </li>
               <li>
                 <Link 
