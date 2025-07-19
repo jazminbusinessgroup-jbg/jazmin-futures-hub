@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,78 +14,117 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-jazmin-dark/95 backdrop-blur-md border-b border-jazmin-border/50 transition-all duration-300">
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo and Company Name */}
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <img 
-                src="/lovable-uploads/09df0feb-4add-4808-b30c-420a0364a90f.png" 
-                alt="JBG Logo" 
-                className="h-12 w-12 object-contain filter brightness-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-jazmin-gold/20 to-transparent rounded-full blur-sm"></div>
-            </div>
-            <div className="text-white font-serif text-xl font-bold tracking-wide">
-              <span className="text-gradient">Jazmin</span> Business Group
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-jazmin-beige">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/09df0feb-4add-4808-b30c-420a0364a90f.png" 
+              alt="Jazmin Business Group Logo" 
+              className="h-10 w-10 object-contain"
+            />
+            <div className="hidden sm:block">
+              <h1 className="font-serif text-xl font-semibold text-jazmin-brown">
+                Jazmin Business Group
+              </h1>
+              <p className="text-xs text-jazmin-warm -mt-1">LLC</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {[
-              { label: "Home", section: "home" },
-              { label: "About", section: "about" },
-              { label: "Subsidiaries", section: "subsidiaries" },
-              { label: "Governance", section: "governance" },
-              { label: "News", section: "news" },
-              { label: "Contact", section: "contact" }
-            ].map((item) => (
-              <button
-                key={item.section}
-                onClick={() => scrollToSection(item.section)}
-                className="relative text-white hover:text-jazmin-gold transition-all duration-300 font-medium text-sm uppercase tracking-wider group"
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-jazmin-gold to-transparent transition-all duration-300 group-hover:w-full"></span>
-              </button>
-            ))}
+          <nav className="hidden md:flex items-center space-x-8">
+            <button 
+              onClick={() => scrollToSection("home")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => scrollToSection("about")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection("subsidiaries")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              Companies
+            </button>
+            <button 
+              onClick={() => scrollToSection("governance")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              Governance
+            </button>
+            <button 
+              onClick={() => scrollToSection("news")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              News
+            </button>
+            <button 
+              onClick={() => scrollToSection("contact")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              Contact
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
+            className="md:hidden p-2 text-jazmin-brown"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white hover:text-jazmin-gold transition-colors p-2"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-jazmin-dark/98 backdrop-blur-md border-b border-jazmin-border/50 shadow-premium">
-          <nav className="container mx-auto px-6 py-8 space-y-6">
-            {[
-              { label: "Home", section: "home" },
-              { label: "About", section: "about" },
-              { label: "Subsidiaries", section: "subsidiaries" },
-              { label: "Governance", section: "governance" },
-              { label: "News", section: "news" },
-              { label: "Contact", section: "contact" }
-            ].map((item) => (
-              <button
-                key={item.section}
-                onClick={() => scrollToSection(item.section)}
-                className="block w-full text-left text-white hover:text-jazmin-gold transition-all duration-300 font-medium py-3 text-lg uppercase tracking-wider border-b border-jazmin-border/30 hover:border-jazmin-gold/50"
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 bg-background border-t border-jazmin-beige">
+            <nav className="flex flex-col space-y-4">
+              <button 
+                onClick={() => scrollToSection("home")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
               >
-                {item.label}
+                Home
               </button>
-            ))}
-          </nav>
-        </div>
-      )}
+              <button 
+                onClick={() => scrollToSection("about")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+              >
+                About
+              </button>
+              <button 
+                onClick={() => scrollToSection("subsidiaries")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+              >
+                Companies
+              </button>
+              <button 
+                onClick={() => scrollToSection("governance")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+              >
+                Governance
+              </button>
+              <button 
+                onClick={() => scrollToSection("news")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+              >
+                News
+              </button>
+              <button 
+                onClick={() => scrollToSection("contact")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+              >
+                Contact
+              </button>
+            </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
 };
