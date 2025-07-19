@@ -59,6 +59,14 @@ const Footer = () => {
               </li>
               <li>
                 <button 
+                  onClick={() => document.getElementById("news")?.scrollIntoView({ behavior: "smooth" })}
+                  className="text-jazmin-beige hover:text-white transition-colors duration-300"
+                >
+                  News & Updates
+                </button>
+              </li>
+              <li>
+                <button 
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   className="text-jazmin-beige hover:text-white transition-colors duration-300"
                 >

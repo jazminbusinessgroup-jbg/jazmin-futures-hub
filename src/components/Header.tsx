@@ -59,6 +59,12 @@ const Header = () => {
               Governance
             </button>
             <button 
+              onClick={() => scrollToSection("news")}
+              className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
+            >
+              News
+            </button>
+            <button 
               onClick={() => scrollToSection("contact")}
               className="text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300"
             >
@@ -102,6 +108,12 @@ const Header = () => {
                 className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
               >
                 Governance
+              </button>
+              <button 
+                onClick={() => scrollToSection("news")}
+                className="text-left text-jazmin-warm hover:text-jazmin-brown transition-colors duration-300 py-2"
+              >
+                News
               </button>
               <button 
                 onClick={() => scrollToSection("contact")}
