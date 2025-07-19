@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-end justify-center overflow-hidden pb-20" style={{
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('/lovable-uploads/3713ac4b-61df-41f1-a1f6-6c02dba8c01a.png')`,
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('/lovable-uploads/c55d93a9-c049-41f4-9f36-df7f30a8239a.png')`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
