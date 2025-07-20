@@ -105,7 +105,7 @@ const Hero = () => {
         onMouseDown={(e) => handleMouseDown(e, 'subhead')}
       >
         <textarea
-          className="text-lg sm:text-xl text-white bg-transparent border-2 border-dashed border-transparent hover:border-white/30 focus:border-white/50 focus:outline-none resize-none text-center leading-relaxed"
+          className="text-base sm:text-lg text-white bg-transparent border-2 border-dashed border-transparent hover:border-white/30 focus:border-white/50 focus:outline-none resize-none text-center leading-relaxed"
           value={subheadText}
           onChange={(e) => setSubheadText(e.target.value)}
           rows={3}
