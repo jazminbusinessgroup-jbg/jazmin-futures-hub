@@ -23,13 +23,6 @@ const Hero = () => {
         <div className="absolute top-1/2 right-1/3 w-16 h-16 border border-jazmin-gold rounded-full animate-float" style={{ animationDelay: "2s" }}></div>
       </div>
 
-      {/* Subheadline positioned inside background photo frame */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <p className="text-lg sm:text-xl text-white max-w-2xl mx-auto leading-relaxed animate-fade-in text-center">
-          Jazmin Business Group LLC (JBG) manages a diverse portfolio of companies across education, 
-          technology, care, travel, and publishing—united by integrity and innovation.
-        </p>
-      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -60,6 +53,12 @@ const Hero = () => {
               <Sparkles className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
             </Button>
           </div>
+
+          {/* Subheadline */}
+          <p className="text-sm text-white max-w-2xl mx-auto leading-relaxed animate-fade-in text-center mt-6">
+            Jazmin Business Group LLC (JBG) manages a diverse portfolio of companies across education, 
+            technology, care, travel, and publishing—united by integrity and innovation.
+          </p>
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
