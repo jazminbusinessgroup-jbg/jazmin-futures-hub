@@ -6,6 +6,7 @@ import Governance from "@/components/Governance";
 import NewsUpdates from "@/components/NewsUpdates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <NewsUpdates />
       <Contact />
       <Footer />
+      <BackToTop />
     </div>
   );
 };

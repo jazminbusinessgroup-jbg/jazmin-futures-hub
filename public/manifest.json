@@ -1,0 +1,16 @@
+{
+  "name": "Jazmin Business Group LLC",
+  "short_name": "JBG",
+  "description": "JBG manages a diverse portfolio of companies across education, technology, care, travel, and publishing—united by integrity and innovation.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#8B4513",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/src/assets/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

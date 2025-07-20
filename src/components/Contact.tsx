@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle, Phone, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,18 +18,55 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Basic validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Please fill in all fields",
+        description: "All fields are required to send your message.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Invalid email address",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Message Sent Successfully!",
-      description: "Thank you for your interest. We'll get back to you soon.",
-    });
-
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+    
+    try {
+      // In a real application, you would send this to your backend
+      // For demo purposes, we'll simulate the submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Simulate potential server error (10% chance)
+      if (Math.random() < 0.1) {
+        throw new Error("Server error");
+      }
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+      
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later or contact us directly at info@jazminbusinessgroup.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -69,7 +107,21 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-jazmin-brown">Email</p>
-                    <p className="text-jazmin-warm">contact@jazminbusinessgroup.com</p>
+                    <a href="mailto:info@jazminbusinessgroup.com" className="text-jazmin-warm hover:text-jazmin-brown transition-colors">
+                      info@jazminbusinessgroup.com
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <div className="bg-jazmin-cream p-2 rounded-full">
+                    <Phone className="h-4 w-4 text-jazmin-brown" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-jazmin-brown">Phone</p>
+                    <a href="tel:+15025551234" className="text-jazmin-warm hover:text-jazmin-brown transition-colors">
+                      +1 (502) 555-1234
+                    </a>
                   </div>
                 </div>
                 
@@ -79,7 +131,17 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-medium text-jazmin-brown">Headquarters</p>
-                    <p className="text-jazmin-warm">Kentucky, USA</p>
+                    <p className="text-jazmin-warm">Louisville, KY, USA</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3">
+                  <div className="bg-jazmin-cream p-2 rounded-full">
+                    <Clock className="h-4 w-4 text-jazmin-brown" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-jazmin-brown">Business Hours</p>
+                    <p className="text-jazmin-warm">Mon-Fri: 9:00 AM - 6:00 PM EST</p>
                   </div>
                 </div>
               </CardContent>
@@ -176,10 +238,13 @@ const Contact = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-jazmin-brown hover:bg-jazmin-warm text-white py-3 font-medium shadow-warm transition-all duration-300 hover:shadow-elegant"
+                  className="w-full bg-jazmin-brown hover:bg-jazmin-warm text-white py-3 font-medium shadow-warm transition-all duration-300 hover:shadow-elegant disabled:opacity-70"
                 >
                   {isSubmitting ? (
-                    "Sending..."
+                    <div className="flex items-center space-x-2">
+                      <LoadingSpinner size="sm" />
+                      <span>Sending...</span>
+                    </div>
                   ) : (
                     <>
                       Send Message
