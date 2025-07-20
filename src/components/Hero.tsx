@@ -4,9 +4,6 @@ import { useState } from "react";
 
 const Hero = () => {
   const [headlineText, setHeadlineText] = useState("Empowering Ideas.\nBuilding Futures.");
-  const [headlinePos, setHeadlinePos] = useState({ x: 50, y: 40 });
-  const [isDraggingHeadline, setIsDraggingHeadline] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -15,45 +12,16 @@ const Hero = () => {
     }
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const containerRect = e.currentTarget.parentElement?.getBoundingClientRect();
-    if (!containerRect) return;
-
-    setDragOffset({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-
-    setIsDraggingHeadline(true);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDraggingHeadline) return;
-    
-    const containerRect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - dragOffset.x - containerRect.left) / containerRect.width) * 100;
-    const y = ((e.clientY - dragOffset.y - containerRect.top) / containerRect.height) * 100;
-
-    setHeadlinePos({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
-  };
-
-  const handleMouseUp = () => {
-    setIsDraggingHeadline(false);
-  };
-
   return (
     <section 
       id="home" 
-      className="relative min-h-screen overflow-hidden select-none" 
+      className="relative min-h-screen overflow-hidden" 
       style={{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('/lovable-uploads/c55d93a9-c049-41f4-9f36-df7f30a8239a.png')`,
         backgroundSize: 'contain',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 opacity-5">
@@ -62,25 +30,17 @@ const Hero = () => {
         <div className="absolute top-1/2 right-1/3 w-16 h-16 border border-jazmin-gold rounded-full animate-float" style={{ animationDelay: "2s" }}></div>
       </div>
 
-      {/* Draggable Main Headline */}
+      {/* Fixed Main Headline */}
       <div
-        className={`absolute transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-move ${isDraggingHeadline ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20"
         style={{
-          left: `${headlinePos.x}%`,
-          top: `${headlinePos.y}%`,
+          left: '50%',
+          top: '40%',
         }}
-        onMouseDown={handleMouseDown}
       >
-        <textarea
-          className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white bg-transparent border-2 border-dashed border-transparent hover:border-white/30 focus:border-white/50 focus:outline-none resize-none text-center whitespace-pre-wrap"
-          value={headlineText}
-          onChange={(e) => setHeadlineText(e.target.value)}
-          rows={2}
-          style={{ 
-            minWidth: '400px',
-            lineHeight: '1.2'
-          }}
-        />
+        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white text-center whitespace-pre-wrap">
+          {headlineText}
+        </h1>
       </div>
 
 
