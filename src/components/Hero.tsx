@@ -27,7 +27,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
 
           {/* Main Headline */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 animate-fade-in">
             Empowering Ideas.
             <br />
             <span className="text-jazmin-cream">Building Futures.</span>
