@@ -4,11 +4,8 @@ import { useState } from "react";
 
 const Hero = () => {
   const [headlineText, setHeadlineText] = useState("Empowering Ideas.\nBuilding Futures.");
-  const [subheadText, setSubheadText] = useState("Jazmin Business Group LLC (JBG) manages a diverse portfolio of companies across education, technology, care, travel, and publishing—united by integrity and innovation.");
   const [headlinePos, setHeadlinePos] = useState({ x: 50, y: 40 });
-  const [subheadPos, setSubheadPos] = useState({ x: 50, y: 55 });
   const [isDraggingHeadline, setIsDraggingHeadline] = useState(false);
-  const [isDraggingSubhead, setIsDraggingSubhead] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
   const scrollToSection = (sectionId: string) => {
@@ -18,7 +15,7 @@ const Hero = () => {
     }
   };
 
-  const handleMouseDown = (e: React.MouseEvent, type: 'headline' | 'subhead') => {
+  const handleMouseDown = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const containerRect = e.currentTarget.parentElement?.getBoundingClientRect();
     if (!containerRect) return;
@@ -28,30 +25,21 @@ const Hero = () => {
       y: e.clientY - rect.top
     });
 
-    if (type === 'headline') {
-      setIsDraggingHeadline(true);
-    } else {
-      setIsDraggingSubhead(true);
-    }
+    setIsDraggingHeadline(true);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDraggingHeadline && !isDraggingSubhead) return;
+    if (!isDraggingHeadline) return;
     
     const containerRect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - dragOffset.x - containerRect.left) / containerRect.width) * 100;
     const y = ((e.clientY - dragOffset.y - containerRect.top) / containerRect.height) * 100;
 
-    if (isDraggingHeadline) {
-      setHeadlinePos({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
-    } else if (isDraggingSubhead) {
-      setSubheadPos({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
-    }
+    setHeadlinePos({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
   };
 
   const handleMouseUp = () => {
     setIsDraggingHeadline(false);
-    setIsDraggingSubhead(false);
   };
 
   return (
@@ -81,7 +69,7 @@ const Hero = () => {
           left: `${headlinePos.x}%`,
           top: `${headlinePos.y}%`,
         }}
-        onMouseDown={(e) => handleMouseDown(e, 'headline')}
+        onMouseDown={handleMouseDown}
       >
         <textarea
           className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white bg-transparent border-2 border-dashed border-transparent hover:border-white/30 focus:border-white/50 focus:outline-none resize-none text-center whitespace-pre-wrap"
@@ -95,26 +83,6 @@ const Hero = () => {
         />
       </div>
 
-      {/* Draggable Subheadline */}
-      <div
-        className={`absolute transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-move ${isDraggingSubhead ? 'cursor-grabbing' : 'cursor-grab'}`}
-        style={{
-          left: `${subheadPos.x}%`,
-          top: `${subheadPos.y}%`,
-        }}
-        onMouseDown={(e) => handleMouseDown(e, 'subhead')}
-      >
-        <textarea
-          className="text-base sm:text-lg text-white bg-transparent border-2 border-dashed border-transparent hover:border-white/30 focus:border-white/50 focus:outline-none resize-none text-center leading-relaxed"
-          value={subheadText}
-          onChange={(e) => setSubheadText(e.target.value)}
-          rows={3}
-          style={{ 
-            minWidth: '500px',
-            maxWidth: '800px'
-          }}
-        />
-      </div>
 
       {/* CTAs - Fixed position */}
       <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-10">
