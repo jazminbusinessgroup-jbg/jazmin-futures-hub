@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,88 +13,44 @@ interface NewsItem {
 }
 
 const NewsUpdates = () => {
-  const [news] = useState<NewsItem[]>([
-    {
-      id: "1",
-      title: "JBG Announces Strategic Expansion into African Markets",
-      content: "Jazmin Business Group LLC is pleased to announce our strategic expansion into African markets through our GPEC Ethiopia subsidiary. This expansion represents our commitment to global education and professional development.",
-      author: "Romario Mesfen",
-      date: "2024-01-15",
-      category: "Business Expansion"
-    },
-    {
-      id: "2",
-      title: "Easy Code Pro LLC Launches AI-Powered Website Builder",
-      content: "Our technology subsidiary Easy Code Pro LLC has successfully launched its revolutionary AI-powered website and application builder, making digital solutions accessible to businesses and individuals worldwide.",
-      author: "Technology Team",
-      date: "2024-01-10",
-      category: "Technology"
-    },
-    {
-      id: "3",
-      title: "Start Easy App LLC Partners with Leading Universities",
-      content: "Start Easy App LLC has established partnerships with top universities across three continents to streamline the educational consulting process for international students.",
-      author: "Education Team",
-      date: "2024-01-08",
-      category: "Education"
-    },
-    {
-      id: "4",
-      title: "IBLI Global LLC Introduces Advanced Learning Modules",
-      content: "IBLI Global LLC has launched new interactive learning modules featuring AI-powered personalized learning paths and real-time progress tracking for enhanced educational outcomes.",
-      author: "Development Team",
-      date: "2024-01-05",
-      category: "Education"
-    },
-    {
-      id: "5",
-      title: "Jazi Care LLC Receives Healthcare Innovation Recognition",
-      content: "Jazi Care LLC has been recognized for its innovative maternal care tracking app, helping thousands of expecting mothers monitor their pregnancy journey with professional medical guidance.",
-      author: "Healthcare Team",
-      date: "2024-01-03",
-      category: "Healthcare"
-    },
-    {
-      id: "6",
-      title: "Baytul Kitab LLC Publishes New Educational Series",
-      content: "Baytul Kitab LLC has released a comprehensive educational series focusing on contemporary learning methodologies and cultural preservation through digital publishing.",
-      author: "Publishing Team",
-      date: "2024-01-01",
-      category: "Publishing"
-    },
-    {
-      id: "7",
-      title: "Travel Assist Services LLC Expands VFS Network",
-      content: "Travel Assist Services LLC has expanded its Visa Facilitation Service (VFS) network to include 15 new countries, making global mobility assistance more accessible worldwide.",
-      author: "Travel Team",
-      date: "2023-12-28",
-      category: "Travel Services"
-    },
-    {
-      id: "8",
-      title: "Dana Knowledge Center Launches Online Islamic University",
-      content: "Dana Knowledge Center has officially launched its comprehensive online Islamic university platform, offering accredited courses and research opportunities to students globally.",
-      author: "Academic Team",
-      date: "2023-12-25",
-      category: "Education"
-    },
-    {
-      id: "9",
-      title: "GPEC Ethiopia Achieves International Certification Standards",
-      content: "Global Prep & Exam Center Ethiopia has achieved international certification standards for IELTS, TOEFL, and GRE testing facilities, ensuring world-class examination services.",
-      author: "Certification Team",
-      date: "2023-12-22",
-      category: "Education"
-    },
-    {
-      id: "10",
-      title: "Admission 1 2 3 LLC Simplifies Global University Applications",
-      content: "Admission 1 2 3 LLC has launched a streamlined platform that simplifies university application processes for students seeking admission to institutions worldwide.",
-      author: "Admissions Team",
-      date: "2023-12-20",
-      category: "Education"
+  const [news, setNews] = useState<NewsItem[]>([]);
+
+  useEffect(() => {
+    // Load news from localStorage, with fallback to default news
+    const savedNews = localStorage.getItem("jbg-news");
+    if (savedNews) {
+      setNews(JSON.parse(savedNews));
+    } else {
+      // Default news items
+      const defaultNews = [
+        {
+          id: "1",
+          title: "JBG Announces Strategic Expansion into African Markets",
+          content: "Jazmin Business Group LLC is pleased to announce our strategic expansion into African markets through our GPEC Ethiopia subsidiary. This expansion represents our commitment to global education and professional development.",
+          author: "Romario Mesfen",
+          date: "2024-01-15",
+          category: "Business Expansion"
+        },
+        {
+          id: "2",
+          title: "Easy Code Pro LLC Launches AI-Powered Website Builder",
+          content: "Our technology subsidiary Easy Code Pro LLC has successfully launched its revolutionary AI-powered website and application builder, making digital solutions accessible to businesses and individuals worldwide.",
+          author: "Technology Team",
+          date: "2024-01-10",
+          category: "Technology"
+        },
+        {
+          id: "3",
+          title: "Start Easy App LLC Partners with Leading Universities",
+          content: "Start Easy App LLC has established partnerships with top universities across three continents to streamline the educational consulting process for international students.",
+          author: "Education Team",
+          date: "2024-01-08",
+          category: "Education"
+        }
+      ];
+      setNews(defaultNews);
     }
-  ]);
+  }, []);
 
 
   const formatDate = (dateString: string) => {
